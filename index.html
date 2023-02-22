@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Pagina Web</title>
+    <title>Registro de clientes</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
@@ -15,126 +15,56 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="card">
-                    <div class="card-header">REGISTRO DE ALUMNOS</div>
+                    <div class="card-header">REGISTRO DE ClIENTES</div>
                     <div class="card-body">
-                        <form id="frmAlumno" @reset.prevent="nuevoAlumno" v-on:submit.prevent="guardarAlumno">
+                        <form id="frmCliente" @reset.prevent="nuevoCliente" v-on:submit.prevent="guardarCliente">
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
-                                    <label for="txtCodigoAlumno">CODIGO:</label>
+                                    <label for="txtCodigoCliente">CODIGO:</label>
                                 </div>
                                 <div class="col-3 col-md-3">
-                                    <input required pattern="[0-9]{3}" title="Ingrese un codigo de Alumno de 3 digitos"
-                                        v-model="alumno.codigo" type="text" class="form-control" name="txtCodigoAlumno"
-                                        id="txtCodigoAlumno">
+                                    <input required pattern="[0-9]{3}" title="Ingrese un codigo de Cliente de 3 digitos"
+                                        v-model="cliente.codigo" type="text" class="form-control" name="txtCodigoCliente"
+                                        id="txtCodigoCliente">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
-                                    <label for="txtNombreAlumno">NOMBRE:</label>
+                                    <label for="txtNombreCliente">NOMBRE:</label>
                                 </div>
                                 <div class="col-9 col-md-6">
-                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}" v-model="alumno.nombre" type="text"
-                                        class="form-control" name="txtNombreAlumno" id="txtNombreAlumno">
+                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}" v-model="cliente.nombre" type="text"
+                                        class="form-control" name="txtNombreCliente" id="txtNombreCliente">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
-                                    <label for="txtDireccionAlumno">DIRECCION:</label>
+                                    <label for="txtDireccionCliente">DIRECCION:</label>
                                 </div>
                                 <div class="col-9 col-md-6">
-                                    <input required v-model="alumno.direccion" type="text" class="form-control"
-                                        name="txtDireccionAlumno" id="txtDireccionAlumno">
+                                    <input required v-model="cliente.direccion" type="text" class="form-control"
+                                        name="txtDireccionCliente" id="txtDireccionCliente">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
-                                    <label for="txtDepartamentoAlumno">DEPARTAMENTO:</label>
-                                </div>
-
-                                <!-- <select v-model="alumno.departamento" class="form-control" id="inputDepartamentoAlumno">
-                                    <option disabled value="">-</option>
-                                    <option value="Ahuachapán">Ahuachapán</option>
-                                    <option value="Cabañas">Cabañas</option>
-                                    <option value="Chalatenango">Chalatenango</option>
-                                    <option value="Cuscatlán">Cuscatlán</option>
-                                    <option value="La Libertad">La Libertad</option>
-                                    <option value="Morazán">Morazán</option>
-                                    <option value="La Paz">La Paz</option>
-                                    <option value="Santa Ana">Santa Ana</option>    
-                                    <option value="San Miguel">San Miguel</option>
-                                    <option value="San Salvador">San Salvador</option>
-                                    <option value="San Vicente">San Vicente</option>
-                                    <option value="Sonsonate">Sonsonate</option>
-                                    <option value="La Unión">La Unión</option>
-                                    <option value="Usulután">Usulután</option> 
-                                </select>
-                            
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-3 col-md-2">
-                                    <label for="txtNombreAlumno">MUNICIPIO:</label>
-                                </div>
-                                <div class="col-9 col-md-6">
-                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                        v-model="alumno.municipio" type="text" class="form-control" name="txtMunicipioAlumno" id="txtMunicipioAlumno">
-                                </div>
-                            </div>
-                        -->
-                            </div>
-                            <div class="col-3 md-3">
-                                <select v-model="alumno.departamento" class="form-control" id="inputDepartamentoAlumno"
-                                    @change="actualizarMunicipios">
-                                    <option disabled value="">-</option>
-                                    <option v-for="departamento in departamentos" :value="departamento">{{departamento}}
-                                    </option>
-                                </select>
-                                <div class="col-2 col-md-1">
-                                    <label for="txtNombreAlumno">MUNICIPIO:</label>
-                                </div>
-
-                                <select v-model="alumno.municipio" class="form-control" id="inputMunicipioAlumno">
-                                    <option disabled value="">-</option>
-                                    <option v-for="municipio in municipios" :value="municipio">{{municipio}}</option>
-                                </select>
-                            </div>
-
-                            <div class="row p-1">
-                                <div class="col-3 col-md-2">
-                                    <label for="txtTelefonoAlumno">TELEFONO:</label>
-                                </div>
-                                <div class="col-3 col-md-3">
-                                    <input required pattern="[0-9]{8}" v-model="alumno.telefono" type="tel"
-                                        class="form-control" name="txtTelefonoAlumno" id="txtTelefonoAlumno">
-                                </div>
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-3 col-md-2">
-                                    <label for="txtFechaNAlumno">FECHA DE NACIMIENTO:</label>
-                                </div>
-                                <div class="col-9 col-md-4">
-                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}" v-model="alumno.fechan" type="date"
-                                        class="form-control" name="txtFechaNAlumno" id="txtFechaNAlumno">
-                                </div>
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-3 col-md-2">
-                                    <label for="txtGeneroAlumno">GENERO:</label>
+                                    <label for="txtGeneroCliente">ZONA:</label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" v-model="alumno.genero" v-bind:value="'Masculino'"
+                                    <input class="form-check-input" v-model="cliente.zona" v-bind:value="'Urbana'"
                                         type="radio" name="flexRadioGenero" id="flexRadioGenero">
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        Masculino
+                                        Urbana
                                     </label>
 
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" v-model="alumno.genero" v-bind:value="'Femenino'"
+                                    <input class="form-check-input" v-model="cliente.zona" v-bind:value="'Rural'"
                                         type="radio" name="flexRadioGenero" id="flexRadioGenero">
 
                                     <label class="form-check-label" for="flexRadioDefault2">
-                                        Femenino
+                                        Rural
                                     </label>
                                 </div>
                             </div>
@@ -151,42 +81,37 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="col-12 col-md-12">
                 <div class="card">
-                    <div class="card-header">LISTADO DE ALUMNOS</div>
+                    <div class="card-header">LISTADO DE CLIENTES</div>
                     <div class="card-body">
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>BUSCAR:</th>
                                     <th colspan="6"><input type="text" class="form-control" v-model="buscar"
-                                            @keyup="listarAlumnos()" placeholder="Buscar por codigo o nombre"></th>
-                                </tr>
+                                            @keyup="listarClientes()" placeholder="Buscar por codigo o nombre"></th>
+                                </tr>Cliente
                                 <tr>
                                     <th>CODIGO</th>
                                     <th>NOMBRE</th>
                                     <th>DIRECCION</th>
-                                    <th>DEPARTAMENTO</th>
-                                    <th>MUNICIPIO</th>
-                                    <th>TELEFONO</th>
-                                    <th>FECHA DE NACIMIENTO</th>
-                                    <th>GENERO</th>
+                                    <th>ZONA</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="alumno in alumnos" :key="alumno.idAlumno" @click="modificarAlumno(alumno)">
-                                    <td>{{ alumno.codigo }}</td>
-                                    <td>{{ alumno.nombre }}</td>
-                                    <td>{{ alumno.direccion }}</td>
-                                    <td>{{ alumno.departamento }}</td>
-                                    <td>{{ alumno.municipio }}</td>
-                                    <td>{{ alumno.telefono }}</td>
-                                    <td>{{ alumno.fechan }}</td>
-                                    <td>{{ alumno.genero }}</td>
+                                <tr v-for="cliente in clientes" :key="cliente.idCliente" @click="modificarCliente(cliente)">
+                                    <td>{{ cliente.codigo }}</td>
+                                    <td>{{ cliente.nombre }}</td>
+                                    <td>{{ cliente.direccion }}</td>
+                                    <td>{{ cliente.zona }}</td>
+                                 
 
 
 
-                                    <td><button class="btn btn-danger" @click="eliminarAlumno(alumno)">ELIMINAR</button>
+                                    <td><button class="btn btn-danger" @click="eliminarCliente(cliente)">ELIMINAR</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -208,173 +133,58 @@
                     db: '',
                     accion: 'nuevo',
                     buscar: '',
-                    alumnos: [],
-                    alumno: {
-                        idAlumno: '',
+                    clientes: [],
+                    cliente: {
+                        idCliente: '',
                         codigo: '',
                         direccion: '',
-                        municipio: '',
-                        departamento: '',
-                        telefono: '',
-                        fechan: '',
-                        genero: '',
+                        zona: '',
+                        
                     },
-                    departamentos: [
-                        'Ahuachapán',
-                        'Cabañas',
-                        'Chalatenango',
-                        'Cuscatlán',
-                        'La Libertad',
-                        'Morazán',
-                        'La Paz',
-                        'Santa Ana',
-                        'San Miguel',
-                        'San Salvador',
-                        'San Vicente',
-                        'Sonsonate',
-                        'La Unión',
-                        'Usulután',
-                    ],
-                    municipiosPorDepartamento: {
-                        'Ahuachapán': 
-                           ['Ahuachapán', 'Atiquizaya', 'Concepción de Ataco', 'El Refugio',
-                           'Guaymango', 'Jujutla', 'San Francisco Menéndez', 'San Lorenzo',
-                           'San Pedro Puxtla', 'Tacuba', 'Turín'
-                        ],
-                        'Cabañas': 
-                           ['Cinquera', 'Dolores', 'Guacotecti', 'Ilobasco', 
-                           'Jutiapa', 'San Isidro', 'Sensuntepeque', 'Tejutepeque', 
-                           'Victoria'
-                        ],
-                        'Chalatenango':
-                           ['Chalatenango', 'Nueva Concepción', 'La Palma', 'Agua Caliente',
-                            'Arcatao', 'Azacualpa', 'Comalapa', 'Citalá', 
-                            'Concepción Quezaltepeque', 'Dulce Nombre de María', 'El carrizal', 'El Paraíso', 
-                            'La Laguna', 'La Reina', 'Las Vueltas', 'Nueva Trinidad',
-                            'Nombre de Jesús', 'Ojos de Agua', 'Potonico', 'San Antonio de la Cruz',
-                            'San Antonio Los ranchos', 'San Fernando', 'San Francisco Lempa', 'San Fracisco Morazán', 
-                            'San Ignacio', 'San Isidro Labrador', 'San José Las Flores', 'San Luis del Carmen', 
-                            'San Miguel de Mercedes', 'San Rafael', 'Santa Rita', 'Tejutla', 
-                            'San José Cancasque'
-                        ],
-                        'Cuscatlán': 
-                           ['Candelaria', 'Cojutepeque', 'El Carmen', 'El Rosario', 
-                            'Monte San Juan', 'Oratorio de Concepción', 'San Bartolomé Perulapía','San Cristóbal',
-                            'San José Guayabal', 'San Pedro Perulapán', 'San Rafael Cedros', 'San Ramón',
-                            'Santa Cruz Analquito', 'Santa Cruz Michapa', 'Suchitoto', 'Tenancingo'
-                           ],
-                        'La Libertad': 
-                            ['Antiguo Cuscatlán', 'Chiltiupán', 'Ciudad Arce', 'Colón', 
-                            'Comasagua', 'Huizúcar', 'Jayaque', 'Jicalapa', 
-                            'Santa Tecla', 'Nuevo Cuscatlán', 'San Juan Opico', 'Quezaltepeque', 
-                            'Sacacoyo', 'San José Villanueva', 'San Matías', 'San Pablo Tacachico', 
-                            'Talnique', 'Tamanique', 'Teotepeque', 'Tepecoyo', 
-                            'Zaragoza'],
-                        'Morazán': 
-                            ['Arambala', 'Cacaopera', 'Chilanga', 'Corinto', 
-                            'Delicias de Concepción', 'El Divisadero', 'El Rosario', 'Gualococti', 
-                            'Guatajiagua', 'Joateca', 'Jocoaitique', 'Jocoro', 
-                            'Lolotiquillo', 'Meanguera', 'Osicala', 'Perquín', 
-                            'San Carlos', 'San Fernando', 'San Francisco Gotera', 'San Isidro', 
-                            'San Simón', 'Sensembra', 'Sociedad', 'Torola', 
-                            'Yamabal', 'Yoloaiquín'],
-
-                        'La Paz': 
-                            ['Cuyultitán', 'El Rosario', 'Jerusalén', 'Mercedes La Ceiba', 
-                            'Olocuilta', 'Paraíso de Osorio', 'San Antonio Masahuat', 'San Emigdio', 
-                            'San Francisco Chinameca', 'San Juan Nonualco', 'San Juan Talpa', 'San Juan Tepezontes', 
-                            'San Luis Talpa', 'San Luis La Herradura', 'San Miguel Tepezontes', 'San Pedro Masahuat', 
-                            'San Pedro Nonualco', 'San Rafael Obrajuelo', 'Santa María Ostuma', 'Santiago Nonualco', 
-                            'Tapalhuaca', 'Zacatecoluca'],
-
-                        'Santa Ana': 
-                            ['Candelaria de la Frontera', 'Chalchuapa', 'Coatepeque', 'El Congo', 
-                            'El Porvenir', 'Masahuat', 'Metapán', 'San Antonio Pajonal', 
-                            'San Sebastián Salitrillo', 'Santa Ana', 'Santa Rosa Guachipilín', 'Santiago de la Frontera', 
-                            'Texistepeque'],
-                        'San Miguel': 
-                            ['Carolina', 'Chapeltique', 'Chinameca', 'Chirilagua', 
-                            'Ciudad Barrios', 'Comacarán', 'El Tránsito', 'Lolotique', 
-                            'Moncagua', 'Nueva Guadalupe', 'Nuevo Edén de San Juan', 'Quelepa', 
-                            'San Antonio del Mosco', 'San Gerardo', 'San Jorge', 'San Luis de la Reina', 
-                            'San Miguel', 'San Rafael Oriente', 'Sesori', 'Uluazapa'],
-                        'San Salvador': 
-                            ['Aguilares', 'Apopa', 'Ayutuxtepeque', 'Cuscatancingo', 
-                            'Ciudad Delgado', 'El Paisnal', 'Guazapa', 'Ilopango', 
-                            'Mejicanos', 'Nejapa', 'Panchimalco', 'Rosario de Mora', 
-                            'San Marcos', 'San Martín', 'San Salvador', 'Santiago Texacuangos', 
-                            'Santo Tomás', 'Soyapango', 'Tonacatepeque'],
-                        'San Vicente': 
-                            ['Apastepeque', 'Guadalupe', 'San Cayetano Istepeque', 'San Esteban Catarina', 
-                            'San Ildefonso', 'San Lorenzo', 'San Sebastián', 'San Vicente', 
-                            'Santa Clara', 'Santo Domingo', 'Tecoluca', 'Tepetitán', 
-                            'Verapaz'],
-                        'Sonsonate': 
-                            ['Acajutla', 'Armenia', 'Caluco', 'Cuisnahuat', 
-                            'Izalco', 'Juayúa', 'Nahuizalco', 'Nahulingo', 
-                            'Salcoatitán', 'San Antonio del Monte', 'San Julián', 'Santa Catarina Masahuat', 
-                            'Santa Isabel Ishuatán', 'Santo Domingo Guzmán', 'Sonsonate', 'Sonzacate'],
-                        'La Unión': 
-                            ['Anamorós', 'Bolivar', 'Concepción de Oriente', 'Conchagua', 
-                            'El Carmen', 'El Sauce', 'Intipucá', 'La Unión', 
-                            'Lislique', 'Meanguera del Golfo', 'Nueva Esparta', 'Pasaquina', 
-                            'Polorós', 'San Alejo', 'San José', 'Santa Rosa de Lima', 
-                            'Yayantique', 'Yucuaiquín'],
-                        'Usulután': 
-                            ['Alegría', 'Berlín', 'California', 'Concepción Batres', 
-                            'El Triunfo', 'Ereguayquín', 'Estanzuelas', 'Jiquilisco', 
-                            'Jucuapa', 'Jucuarán', 'Mercedes Umaña', 'Nueva Granada', 
-                            'Ozatlán', 'Puerto El Triunfo', 'San Agustín', 'San Buenaventura', 
-                            'San Dionisio', 'San Francisco Javier', 'Santa Elena', 'Santa María', 
-                            'Santiago de María', 'Tecapán', 'Usulután'],
-                    },
-                    municipios: [],
+                    
                 }
 
             },
             methods: {
-                guardarAlumno() {
-                    this.listarAlumnos();
+                guardarCliente() {
+                    this.listarClientes();
                     if (this.accion === 'nuevo') {
-                        this.alumno.idAlumno = new Date().getTime().toString(16);
-                        this.alumnos.push(JSON.parse(JSON.stringify(this.alumno)));
+                        this.cliente.idCliente = new Date().getTime().toString(16);
+                        this.clientes.push(JSON.parse(JSON.stringify(this.cliente)));
                     } else if (this.accion === 'modificar') {
-                        let index = this.alumnos.findIndex(alumno => alumno.idAlumno == this.alumno.idAlumno);
-                        this.alumnos[index] = JSON.parse(JSON.stringify(this.alumno));
+                        let index = this.clientes.findIndex(cliente => cliente.idCliente == this.cliente.idCliente);
+                        this.clientes[index] = JSON.parse(JSON.stringify(this.cliente));
                     } else if (this.accion === 'eliminar') {
-                        let index = this.alumnos.findIndex(alumno => alumno.idAlumno == this.alumno.idAlumno);
-                        this.alumnos.splice(index, 1);
+                        let index = this.clientes.findIndex(cliente => cliente.idCliente == this.cliente.idCliente);
+                        this.clientes.splice(index, 1);
                     }
-                    localStorage.setItem("alumnos", JSON.stringify(this.alumnos));
-                    this.nuevoAlumno();
+                    localStorage.setItem("clientes", JSON.stringify(this.clientes));
+                    this.nuevoCliente();
                 },
-                eliminarAlumno(alumno) {
-                    if (confirm(`Esta seguro de eliminar a ${alumno.nombre}?`)) {
+                eliminarCliente(cliente) {
+                    if (confirm(`Esta seguro de eliminar a ${cliente.nombre}?`)) {
                         this.accion = 'eliminar';
-                        this.alumno = alumno;
-                        this.guardarAlumno();
+                        this.cliente = cliente;
+                        this.guardarCliente();
                     }
                 },
-                nuevoAlumno() {
+                nuevoCliente() {
                     this.accion = 'nuevo';
-                    this.alumno.idAlumno = '';
-                    this.alumno.codigo = '';
-                    this.alumno.nombre = '';
-                    this.alumno.direccion = '';
-                    this.alumno.municipio = '';
-                    this.alumno.departamento = '';
-                    this.alumno.telefono = '';
-                    this.alumno.fechan = '';
-                    this.alumno.genero = '';
-                    this.listarAlumnos();
+                    this.cliente.idCliente = '';
+                    this.cliente.codigo = '';
+                    this.cliente.nombre = '';
+                    this.cliente.direccion = '';
+                    this.cliente.zona = '';
+                    this.listarClientes();
                 },
-                modificarAlumno(alumno) {
+                modificarCliente(cliente) {
                     this.accion = 'modificar';
-                    this.alumno = alumno;
+                    this.cliente = cliente;
                 },
-                listarAlumnos() {
-                    this.alumnos = JSON.parse(localStorage.getItem('alumnos') || "[]")
-                        .filter(alumno => alumno.nombre.toLowerCase().indexOf(this.buscar.toLowerCase()) > -1);
+                listarClientes() {
+                    this.clientes = JSON.parse(localStorage.getItem('clientes') || "[]")
+                    .filter(cliente=>cliente.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1 ||
+                                cliente.codigo.indexOf(this.buscar)>-1);
                 },
                 abrirBD() {
                     let indexedDB = indexedDB.open('db_sistema_academico', 1);
@@ -398,15 +208,15 @@
 
                 },
                 actualizarMunicipios() {
-                    const municipios = this.municipiosPorDepartamento[this.alumno.departamento] || [];
+                    const municipios = this.municipiosPorDepartamento[this.cliente.departamento] || [];
                     this.municipios = municipios;
-                    this.alumno.municipio = '';
+                    this.cliente.municipio = '';
                 }
 
             },
             created() {
                 //this.abrirBD();
-                this.listarAlumnos();
+                this.listarClientes();
             }
         }).mount('#app');
     </script>
