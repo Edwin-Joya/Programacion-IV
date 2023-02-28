@@ -237,35 +237,6 @@ Vue.component('component-alumnos', {
                             <label for="txtDepartamentoAlumno">DEPARTAMENTO:</label>
                         </div>
 
-                        <!-- <select v-model="alumno.departamento" class="form-control" id="inputDepartamentoAlumno">
-                            <option disabled value="">-</option>
-                            <option value="Ahuachapán">Ahuachapán</option>
-                            <option value="Cabañas">Cabañas</option>
-                            <option value="Chalatenango">Chalatenango</option>
-                            <option value="Cuscatlán">Cuscatlán</option>
-                            <option value="La Libertad">La Libertad</option>
-                            <option value="Morazán">Morazán</option>
-                            <option value="La Paz">La Paz</option>
-                            <option value="Santa Ana">Santa Ana</option>    
-                            <option value="San Miguel">San Miguel</option>
-                            <option value="San Salvador">San Salvador</option>
-                            <option value="San Vicente">San Vicente</option>
-                            <option value="Sonsonate">Sonsonate</option>
-                            <option value="La Unión">La Unión</option>
-                            <option value="Usulután">Usulután</option> 
-                        </select>
-                    
-                    </div>
-                    <div class="row p-1">
-                        <div class="col-3 col-md-2">
-                            <label for="txtNombreAlumno">MUNICIPIO:</label>
-                        </div>
-                        <div class="col-9 col-md-6">
-                            <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                v-model="alumno.municipio" type="text" class="form-control" name="txtMunicipioAlumno" id="txtMunicipioAlumno">
-                        </div>
-                    </div>
-                -->
                     </div>
                     <div class="col-3 md-3">
                         <select v-model="alumno.departamento" class="form-control" id="inputDepartamentoAlumno"
