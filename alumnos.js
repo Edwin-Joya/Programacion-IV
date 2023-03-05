@@ -209,7 +209,7 @@ Vue.component('component-alumnos', {
                             <label for="txtCodigoAlumno">CODIGO:</label>
                         </div>
                         <div class="col-3 col-md-3">
-                            <input required pattern="[0-9]{3}" title="Ingrese un codigo de Alumno de 3 digitos"
+                            <input required pattern="[US|SM]{2}[IS|LI]{2}[0-9]{6}" title="Ingrese un codigo de Alumno de 3 digitos"
                                 v-model="alumno.codigo" type="text" class="form-control" name="txtCodigoAlumno"
                                 id="txtCodigoAlumno">
                         </div>
