@@ -25,6 +25,11 @@ Vue.component('component-materias',{
                 this.materias.splice(index,1);
             }
             localStorage.setItem("materias", JSON.stringify(this.materias) );
+            fetch(`private/modulos/materias/materias.php?accion=${this.accion}&materias=${JSON.stringify(this.materia)}`)
+            .then(resp=>resp.json())
+            .then(resp=>{
+                console.log(resp);
+            });
             this.nuevoMateria();
         },
         eliminarMateria(materia){
@@ -47,6 +52,14 @@ Vue.component('component-materias',{
         listar(){
             this.materias = JSON.parse( localStorage.getItem('materias') || "[]" )
                 .filter(materia=>materia.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
+            if( this.materias.length<=0 && this.buscar.trim().length<=0 ){
+                fetch('private/modulos/materias/materias.php?accion=consultar')
+                .then(resp=>resp.json())
+                .then(resp=>{
+                    this.materias = resp;
+                    localStorage.setItem("materias", JSON.stringify(this.materias) );
+                });
+            }
         }
     },
     template: `
