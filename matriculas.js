@@ -32,6 +32,11 @@ Vue.component('component-matriculas',{
                 this.matriculas.splice(index,1);
             }
             localStorage.setItem("matriculas", JSON.stringify(this.matriculas) );
+            fetch(`private/modulos/matriculas/matriculas.php?accion=${this.accion}&matriculas=${JSON.stringify(this.matricula)}`)
+            .then(resp=>resp.json())
+            .then(resp=>{
+                console.log(resp);
+            });
             this.nuevoMatricula();
         },
         eliminarMatricula(matricula){
@@ -55,14 +60,15 @@ Vue.component('component-matriculas',{
         },
         listar(){
             this.matriculas = JSON.parse( localStorage.getItem('matriculas') || "[]" )
-                .filter(matricula=>matricula.alumno.label.toLowerCase().indexOf(this.buscar.toLowerCase())>-1 ||
-                    matricula.fecha.indexOf(this.buscar)>-1);
-            this.alumnos = JSON.parse( localStorage.getItem('alumnos') || "[]" ).map(alumno=>{
-                return { 
-                    id: alumno.idAlumno,
-                    label : alumno.nombre
-                }
-            });
+                .filter(matricula=>matricula.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
+            if( this.matriculas.length<=0 && this.buscar.trim().length<=0 ){
+                fetch('private/modulos/matriculas/matriculas.php?accion=consultar')
+                .then(resp=>resp.json())
+                .then(resp=>{
+                    this.matriculas = resp;
+                    localStorage.setItem("matriculas", JSON.stringify(this.matriculas) );
+                });
+            }
         }
     },
     template: `

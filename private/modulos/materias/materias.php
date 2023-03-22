@@ -14,6 +14,7 @@ class Materia{
     private $datos=[], $db, $respuesta=['msg'=>'ok'];
 
     public function __construct($db){
+
         $this->db = $db;
     }
     public function recibir_datos($materia){
