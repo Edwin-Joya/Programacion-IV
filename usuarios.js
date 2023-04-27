@@ -107,11 +107,11 @@ Vue.component('component-usuarios',{
         <!--Formulario de Login y registro-->
         <div class="contenedor__login-register">
             <!--Login-->
-            <form  class="formulario__login">
+            <form action="private/Config/login.php"method="POST" class="formulario__login">
                 <h2>Iniciar Sesión</h2>
-                <input v-model="usuario.nombre" type="text" placeholder="Correo Electronico" required>
-                <input v-model="usuario.contraseña" type="password" placeholder="Contraseña" required>
-                <button type="submit">Entrar</button>
+                <input name="usuario" type="text" placeholder="Usuario" required>
+                <input name="contraseña" type="password" placeholder="Contraseña" required>
+                <button name="login" type="submit">Entrar</button>
             </form>
 
             <!--Register-->
