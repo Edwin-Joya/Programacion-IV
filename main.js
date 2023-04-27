@@ -5,7 +5,7 @@ var app = new Vue({
     el: "#app",
     data: {
         forms:{
-            docente     : {mostrar:false},
+            usuario     : {mostrar:false},
             alumno      : {mostrar:false},
             materia     : {mostrar:false},
             matricula   : {mostrar:false},
