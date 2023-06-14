@@ -3,8 +3,8 @@
 include("config.php");
 
 $nombre = $_POST["name"];
-$user = $_POST["user"];
 $email = $_POST["email"];
+$user = $_POST["user"];
 $pass   = $_POST["pass"];
 
 
@@ -17,21 +17,22 @@ if(isset($_POST["btningresar"]))
 	
 	if($nr==1)
 	{
-		echo "<script> alert('Bienvenido $user'); window.location='principal.html' </script>";
+		echo "<script> alert('Bienvenido $user'); window.location='../index.html' </script>";
 	}else
 	{
-		echo "<script> alert('Usuario no existe'); window.location='index.html' </script>";
+		echo "<script> alert('Usuario no existe intenta de nuevo'); window.location='../login.html' </script>";
 	}
 }
 
 //Registrar
 if(isset($_POST["btnregistrar"]))
 {
-	$sqlgrabar = "INSERT INTO usuarios(nombre, email, usuario, contraseña) values ('$nombre', '$user', '$email', '$pass')";
+	$idUsuario = dechex(time());
+	$sqlgrabar = "INSERT INTO usuarios(idUsuario, nombre, email, usuario, contraseña) values ('$idUsuario','$nombre', '$email', '$user', '$pass')";
 	
 	if(mysqli_query($conn,$sqlgrabar))
 	{
-		echo "<script> alert('Usuario registrado con exito: $nombre'); window.location='index.html' </script>";
+		echo "<script> alert('Usuario registrado con exito: $nombre'); window.location='../login.html' </script>";
 	}else 
 	{
 		echo "Error: ".$sqlgrabar."<br>".mysql_error($conn);
